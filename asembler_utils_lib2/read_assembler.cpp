@@ -21,24 +21,24 @@ bool IsLebal(std::string a_lineOfCode)
 		//std::find(legalCommands.begin(), legalCommands.end(), command.substr(0, 2));
 	}
 	return true;
-
 }
 
 std::array<std::string, 3> ProcessAssemblyLineData(const std::string& a_assemblyLine)
 {
-	std::string label{""};  
-	std::string opCode{""};
-	std::string usedLabelOrMemAdress{""};
-
-	for (int i = 0 ; i < a_assemblyLine.size() ; ++i)
+	std::array<std::string, 3> lineAssemblyData{ std::string{""}, std::string{""}, std::string{""} };
+	for (int i = 0, stringCounter = 0 ; i < a_assemblyLine.size() ; ++i)
 	{
 		if (a_assemblyLine.at(i) == ' ')
 		{
 			continue;
 		}
-		// TODO [is] check if OP code...
+		for ( ; i != a_assemblyLine.size() && a_assemblyLine.at(i) != ' ' ; ++i)
+		{
+			lineAssemblyData[stringCounter] += a_assemblyLine.at(i);
+		}
+		++stringCounter;
 	}
-	return std::array<std::string, 3> {label, opCode, usedLabelOrMemAdress};
+	return lineAssemblyData;
 }
 
 } //experis namespace
