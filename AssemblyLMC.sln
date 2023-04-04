@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.5.33424.131
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AssemblyLMC", "AssemblyLMC\AssemblyLMC.vcxproj", "{C513A923-F6E9-4E78-B7B9-D1EF5716D326}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2C3CB121-0664-4EB0-B38F-ED3E95770904} = {2C3CB121-0664-4EB0-B38F-ED3E95770904}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "asembler_utils_lib2", "asembler_utils_lib2\asembler_utils_lib2.vcxproj", "{2C3CB121-0664-4EB0-B38F-ED3E95770904}"
 EndProject
