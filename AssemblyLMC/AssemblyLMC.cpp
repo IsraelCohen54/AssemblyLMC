@@ -15,7 +15,7 @@ void ShowLineDataToClient(const std::array<std::string, 3>& a_lmcData)
 
 } // experis namespace
 
-int main()
+int main(int argc, const char** argv)
 {
     // TODO DELETE: TEST CASES: (V all)
     std::array<std::string, 3> res1 = experis::ProcessAssemblyLineData("one dat 1");
