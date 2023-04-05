@@ -23,5 +23,4 @@ int main(int argc, const char **argv)
     std::array<std::string, 3> res3 = experis::ProcessAssemblyLineData(" three     dat one ");
     std::array<std::string, 3> res4 = experis::ProcessAssemblyLineData(" three   dat  k ");
     experis::ShowLineDataToClient(res4);
-
 }
