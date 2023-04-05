@@ -132,6 +132,9 @@
   <ItemGroup>
     <ClCompile Include="AssemblyLMC.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Library training\Using Library for reading file\sample.asm" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
