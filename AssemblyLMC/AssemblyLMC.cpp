@@ -30,7 +30,7 @@ int main(int argc, const char **argv)
     a_dict.Append("two", 2);
     a_dict.Append("tree", 3);
     a_dict.Append("four", 4);
-    a_dict.Append("two", 7);
+    //a_dict.Append("two", 7);
 
     std::cout << a_dict.Size()<<"\n";
     std::cout << a_dict.Val("one") << "\n";
