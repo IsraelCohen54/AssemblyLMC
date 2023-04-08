@@ -25,19 +25,18 @@ std::string  StripLeft(std::string a_string)
 //will be happy if you can take a look at this 
 
 bool IsLebal(std::string a_lineOfCode)
+{
+	std::array<std::string, 13> legalCommands{ "HLT", "ADD", "SUB", "STA", "STO",
+		"LDA", "BRA", "BRZ", "BRP", "INP", "OUT", "OTC", "DAT" };
+	for (std::string command : legalCommands)
 	{
-		
-		std::array<std::string, 13> legalCommands{ "HLT", "ADD", "SUB", "STA", "STO",
-			"LDA", "BRA", "BRZ", "BRP", "INP", "OUT", "OTC", "DAT" };
-		for (std::string command : legalCommands)
-		{
 		if (a_lineOfCode.starts_with(command)) 
-			{
-				return false;
-			}
-		//std::find(legalCommands.begin(), legalCommands.end(), command.substr(0, 2));
+		{
+			return false;
+		}
+	//std::find(legalCommands.begin(), legalCommands.end(), command.substr(0, 2));
 	}
-		return true;
+	return true;
 }
 
 std::array<std::string, 3> ProcessAssemblyLineData(const std::string& a_assemblyLine)

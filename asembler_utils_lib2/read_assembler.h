@@ -5,10 +5,9 @@
 #include <fstream>
 #include <array>
 #include <optional>
-#include <cassert>  // TODO [ar] twice! notice that it's unneeded, better add "#include<>" only when you need it
+#include <cassert>
 #include "Dict2.h"
 
-// TODO [ar] namespace always! I know you might don't like it too much, but it's important...
 namespace experis
 {
 
