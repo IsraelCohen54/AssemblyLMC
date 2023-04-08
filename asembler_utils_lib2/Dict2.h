@@ -14,9 +14,9 @@ using itemType = std::pair<keyType, valType>;
 class Dict2
 {
 public:
-
-	Dict2();
-	Dict2(const Dict2& a_other) = delete;
+	// TODO [ar] uneeded enter
+	explicit Dict2();  //todo [ar] explicit...
+	Dict2(const Dict2& a_other);  // was needed for the return DICT2 func
 	Dict2& operator=(const Dict2& a_other)=delete;
 	~Dict2() = default;
 
@@ -28,7 +28,7 @@ public:
 private:
 	size_t m_size;
 	std::vector<itemType> m_items;
-
+	// TODO [ar] uneeded enter
 };
 
 } //experis namespace

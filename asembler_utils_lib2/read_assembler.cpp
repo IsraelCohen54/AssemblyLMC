@@ -34,7 +34,7 @@ bool IsLebal(std::string a_lineOfCode)
 		{
 			return false;
 		}
-	//std::find(legalCommands.begin(), legalCommands.end(), command.substr(0, 2));
+	std::find(legalCommands.begin(), legalCommands.end(), command.substr(0, 2));
 	}
 	return true;
 }
@@ -77,11 +77,11 @@ std::optional< std::vector <std::string> > TextFileToVector(std::string a_fileNa
 	return result;
 }
 
-Dict2 LabelDictFromVector(std::vector<std::string> a_File)
+Dict2 LabelDictFromVector(std::vector<std::string> a_File) // TODO consider return a const DICT2 instead.
 {
-	Dict2 resoult{};
+	Dict2 resoult{}; // todo [ar] check out google how to spell resoult if you'r not sure...
 	size_t counter = 0;
-	for (std::string line : a_File)
+	for (std::string line : a_File) // TODO [ar] can you do it with const &? liek this: const std::string& line : a_File
 	{
 		std::string lebelText = ProcessAssemblyLineData(line).at(0);
 		if (lebelText == "")
@@ -92,6 +92,7 @@ Dict2 LabelDictFromVector(std::vector<std::string> a_File)
 		resoult.Append(lebelText, counter);
 		++counter;
 	}
+	return resoult;
 }
 
 } //experis namespace

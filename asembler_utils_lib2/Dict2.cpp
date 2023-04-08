@@ -5,8 +5,8 @@ namespace experis
 {
 
 Dict2::Dict2()
-	:m_items{}
-	,m_size{}
+: m_items{}
+, m_size{}
 {
 }
 
@@ -16,6 +16,12 @@ void Dict2::Append(itemType a_item)
 	assert(this->Val(a_key) == -1);
 	this->m_items.push_back(a_item);
 	++m_size;
+}
+
+Dict2::Dict2(const Dict2& a_other)  //TODO [ar] just saying I did that so you would know, was needed for your return DICT2 func.
+: m_size{a_other.m_size}
+, m_items{a_other.m_items}
+{
 }
 
 void Dict2::Append(keyType a_key, valType a_val)
