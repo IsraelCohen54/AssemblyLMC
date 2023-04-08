@@ -17,7 +17,7 @@ bool IsLebal(std::string a_lineOfCode);
 
 std::array<std::string, 3> ProcessAssemblyLineData(const std::string& a_assemblyLine);
 std::optional< std::vector <std::string> > TextFileToVector(std::string a_fileNameRead);
-
+Dict2 LabelDictFromVector(std::vector<std::string> a_File);
 
 
 } //experis namespace

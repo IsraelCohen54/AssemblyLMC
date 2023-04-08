@@ -73,12 +73,28 @@ std::optional< std::vector <std::string> > TextFileToVector(std::string a_fileNa
 	std::getline(fileToReadFrom, untrustedFileLine);
 	while (!fileToReadFrom.eof())
 	{
-
 		result.push_back(untrustedFileLine);
 		std::getline(fileToReadFrom, untrustedFileLine);
 	}
 	result.push_back(untrustedFileLine);
 	return result;
+}
+
+Dict2 LabelDictFromVector(std::vector<std::string> a_File)
+{
+	Dict2 resoult{};
+	size_t counter = 0;
+	for (std::string line : a_File)
+	{
+		std::string lebelText = ProcessAssemblyLineData(line).at(0);
+		if (lebelText == "")
+		{
+			++counter;
+			continue;
+		}
+		resoult.Append(lebelText, counter);
+		++counter;
+	}
 }
 
 } //experis namespace
