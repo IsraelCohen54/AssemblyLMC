@@ -26,7 +26,7 @@ public:
 	size_t Size();
 
 private:
-	size_t m_size; // TODO consider change from size_t to int, as it isn't a size but an index, and propriate to append counter used at line 92 at read_assembler.cpp
+	size_t m_size; // TODO [ar] consider change from size_t to int, as it isn't a size but an index, and propriate to append counter used at line 92 at read_assembler.cpp
 	std::vector<itemType> m_items;
 	// TODO [ar] uneeded enter
 };
