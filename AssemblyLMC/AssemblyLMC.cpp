@@ -38,7 +38,10 @@ int main(int argc, const char **argv)
     std::cout << a_dict.Val("four") << "\n";
     std::cout << a_dict.Val("2") << "\n";
 
+    //std::cout << StripLeft("  jgvj hjbgkbh  ")<< "\n";
+    //std::cout << StripLeft("werrt") << "\n";
 
-
-
+    //this purt is the test for  
+    //std::string a_string = "werrt";
+    //StripLeft(a_string)
 }
