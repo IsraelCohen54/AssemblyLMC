@@ -1,7 +1,6 @@
 #include "pch.h"
 #include "read_assembler.h"
 
-
 namespace experis
 {
 
@@ -24,7 +23,6 @@ std::string  StripLeft(std::string a_string)
 
 //TODO if i make this function active it giving me an linker eror im sure it something stupid i 
 //will be happy if you can take a look at this 
-
 
 bool IsLebal(std::string a_lineOfCode)
 	{
