@@ -4,45 +4,44 @@
 namespace experis
 {
 
-std::string  StripLeft(std::string a_string)
+void StripLeft(std::string& a_string)
 {
-	size_t numOfSpasies = 0;
+	size_t numOfSpacies = 0;
 	for (char corrChar : a_string)
 	{
 		if (corrChar == ' ')
 		{
-			++numOfSpasies;
+			++numOfSpacies;
+			continue;
 		}
-		else
-		{
-			a_string.erase(0, numOfSpasies);
-			return a_string;
-		}
+		a_string.erase(0, numOfSpacies);
+		return;
 	}
+	a_string.erase(0, numOfSpacies);
+	return;
 }
 
-//TODO if i make this function active it giving me an linker eror im sure it something stupid i 
-//will be happy if you can take a look at this 
-
-bool IsLebal(std::string a_lineOfCode)
+bool IsLabel(std::string a_lineOfCode)
 {
+	StripLeft(a_lineOfCode);
 	std::array<std::string, 13> legalCommands{ "HLT", "ADD", "SUB", "STA", "STO",
 		"LDA", "BRA", "BRZ", "BRP", "INP", "OUT", "OTC", "DAT" };
 	for (std::string command : legalCommands)
 	{
+		std::for_each(a_lineOfCode.begin(), a_lineOfCode.end(), [](char & c){ c = ::toupper(c); });
 		if (a_lineOfCode.starts_with(command)) 
 		{
 			return false;
 		}
-	std::find(legalCommands.begin(), legalCommands.end(), command.substr(0, 2));
+	//std::find(legalCommands.begin(), legalCommands.end(), command.substr(0, 2));
 	}
 	return true;
 }
 
-std::array<std::string, 3> ProcessAssemblyLineData(const std::string& a_assemblyLine)
+std::array<std::string, 3> ProcessAssemblyLineData(const std::string& a_assemblyLine)  //TODO [is] CONST REFERENCE + TESTINGS
 {
 	std::array<std::string, 3> lineAssemblyData{ std::string{""}, std::string{""}, std::string{""} };
-	for (int i = 0, stringCounter = 0 ; i < a_assemblyLine.size() ; ++i)
+	for (int i = 0, stringCounter = int(!IsLabel(a_assemblyLine)) ; i < a_assemblyLine.size() ; ++i)  // !IsLebal as if label exist = start from zero to hold the label
 	{
 		if (a_assemblyLine.at(i) == ' ')
 		{
@@ -77,11 +76,11 @@ std::optional< std::vector <std::string> > TextFileToVector(std::string a_fileNa
 	return result;
 }
 
-Dict2 LabelDictFromVector(std::vector<std::string> a_File) // TODO consider return a const DICT2 instead.
+Dict2 LabelDictFromVector(const std::vector<std::string>& a_File)
 {
-	Dict2 resoult{}; // todo [ar] check out google how to spell resoult if you'r not sure...
+	Dict2 resoult{};
 	size_t counter = 0;
-	for (std::string line : a_File) // TODO [ar] can you do it with const &? liek this: const std::string& line : a_File
+	for (const std::string& line : a_File)
 	{
 		std::string lebelText = ProcessAssemblyLineData(line).at(0);
 		if (lebelText == "")

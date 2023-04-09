@@ -6,17 +6,18 @@
 #include <array>
 #include <optional>
 #include <cassert>
+#include <algorithm>
 #include "Dict2.h"
 
 namespace experis
 {
 
-std::string  StripLeft(std::string a_string);
-bool IsLebal(std::string a_lineOfCode);
+void StripLeft(std::string& a_string);
+bool IsLabel(std::string a_lineOfCode);
 
 std::array<std::string, 3> ProcessAssemblyLineData(const std::string& a_assemblyLine);
 std::optional< std::vector <std::string> > TextFileToVector(std::string a_fileNameRead);
-Dict2 LabelDictFromVector(std::vector<std::string> a_File);
+Dict2 LabelDictFromVector(const std::vector<std::string>& a_File);
 
 
 } //experis namespace
