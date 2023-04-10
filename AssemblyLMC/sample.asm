@@ -11,4 +11,5 @@ end     hlt
 space   dat 32
 one     dat 1
 max     dat 127
-char    dat
+char    dat 
+//bla bla

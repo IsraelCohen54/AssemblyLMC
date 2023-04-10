@@ -83,15 +83,14 @@ std::vector<std::string> TestTextFileToVector(std::string a_fileNameRead)
 int main(int argc, const char **argv)
 {
     using namespace experis;
-    const Dict2 commandDict{std::vector<itemType>{{"HLT", "0"}, {"ADD", "1"}, {"SUB", "2"}, 
-        {"STA", "3"}, {"STO", "3"}, {"LDA", "5"}, {"BRA", "6"}, {"BRZ", "7"}, {"BRP", "8"}, 
-        {"INP", "9"}, {"OUT", "9"}, {"OTC", "9"},{"DAT", ""}} };
+
 
 
 
     std::vector<std::string> test{ TestTextFileToVector("sample.asm") };
     Dict2 labalDict = LabelDictFromVector(test);
-    labalDict.PrintDict();
+    //labalDict.PrintDict();
+    PrintAsemblyCode(test, labalDict);
     //TestUpper();
     //commandDict.PrintDict();
     //TestStripLeft();

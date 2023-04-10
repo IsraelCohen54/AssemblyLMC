@@ -32,6 +32,17 @@ std::string Upper(const std::string& a_string)
 	return resoult;
 }
 
+bool IsNumeric(std::string a_string)
+{
+	for (char element : a_string)
+	{
+		if (!isdigit(element))
+		{
+			return false;
+		}
+	}
+	return true;
+}
 bool IsLabel(std::string a_lineOfCode)
 {
 	
@@ -109,5 +120,27 @@ Dict2 LabelDictFromVector(const std::vector<std::string>& a_File)
 	}
 	return resoult;
 }
+
+std::string AsemblyLineToCode(std::string a_asemblyLine, Dict2 a_labelDict)
+{
+	std::string resault;
+	if (a_asemblyLine.starts_with("//"))
+	{
+		return "";
+	}
+	std::array<std::string, 3> lineData = ProcessAssemblyLineData(a_asemblyLine);
+	std::string  command{ lineData[1] }, addres{ lineData[2] };
+	resault = commandDict.Val(command) + ( (IsNumeric(addres)) ? addres : a_labelDict.Val(addres) ) ;
+	return resault;
+}
+
+void PrintAsemblyCode(const std::vector<std::string>& a_File, Dict2 a_labelDict)
+{
+	for (std::string line : a_File)
+	{
+		std::cout << AsemblyLineToCode(line, a_labelDict)<<"\n";
+	}
+}
+
 
 } //experis namespace
