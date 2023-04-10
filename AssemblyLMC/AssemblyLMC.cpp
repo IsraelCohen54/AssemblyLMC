@@ -83,10 +83,15 @@ std::vector<std::string> TestTextFileToVector(std::string a_fileNameRead)
 int main(int argc, const char **argv)
 {
     using namespace experis;
+    if (argc == 1)
+    {
+        //TODO 
+    }
 
 
 
 
+    //
     std::vector<std::string> test{ TestTextFileToVector("sample.asm") };
     Dict2 labalDict = LabelDictFromVector(test);
     //labalDict.PrintDict();

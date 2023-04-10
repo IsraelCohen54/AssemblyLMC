@@ -27,6 +27,9 @@
     <ClInclude Include="Dict2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="read_file.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="asembler_utils_lib2.cpp">
@@ -39,6 +42,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Dict2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="read_file.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
