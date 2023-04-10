@@ -56,7 +56,7 @@ valType Dict2::Val(keyType a_key) const
 			return corrItem.second;
 		}
 	}
-	return "- 1";
+	return "-1";
 }
 
 size_t Dict2::Size() const

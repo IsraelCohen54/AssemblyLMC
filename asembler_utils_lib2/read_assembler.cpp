@@ -86,6 +86,8 @@ std::optional< std::vector <std::string> > TextFileToVector(std::string a_fileNa
 		result.push_back(untrustedFileLine);
 		std::getline(fileToReadFrom, untrustedFileLine);
 	}
+	untrustedFileLine = StripLeft(untrustedFileLine);
+	untrustedFileLine = Upper(untrustedFileLine);
 	result.push_back(untrustedFileLine);
 	return result;
 }

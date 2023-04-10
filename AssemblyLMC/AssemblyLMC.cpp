@@ -61,7 +61,7 @@ void TestProcessAssemblyLineData()
     std::array<std::string, 3> res8 = experis::ProcessAssemblyLineData(" dat  k ");
 }
 
-void TestTextFileToVector(std::string a_fileNameRead)
+std::vector<std::string> TestTextFileToVector(std::string a_fileNameRead)
 {
     std::optional< std::vector <std::string> > lines= TextFileToVector(a_fileNameRead);
     if (lines.has_value())
@@ -70,10 +70,12 @@ void TestTextFileToVector(std::string a_fileNameRead)
         {
             std::cout << line << "\n";
         }
+        return lines.value();
     }
     else
     {
         std::cout << "file not found";
+        return{};
     }
 }
 
@@ -87,7 +89,9 @@ int main(int argc, const char **argv)
 
 
 
-    TestTextFileToVector("sample.asm");
+    std::vector<std::string> test{ TestTextFileToVector("sample.asm") };
+    Dict2 labalDict = LabelDictFromVector(test);
+    labalDict.PrintDict();
     //TestUpper();
     //commandDict.PrintDict();
     //TestStripLeft();
