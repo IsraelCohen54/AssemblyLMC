@@ -12,4 +12,3 @@ space   dat 32
 one     dat 1
 max     dat 127
 char    dat
-// output the basic ASCII characters
