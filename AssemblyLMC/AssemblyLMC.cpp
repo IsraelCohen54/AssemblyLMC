@@ -20,7 +20,7 @@ void TestDict()
     a_dict.Append("two", "2");
     a_dict.Append("tree", "3");
     a_dict.Append("four", "4");
-    //a_dict.Append("two", 7);
+    //a_dict.Append("two", "7");
 
     std::cout << a_dict.Size() << "\n";
     std::cout << a_dict.Val("one") << "\n";
@@ -63,13 +63,17 @@ void TestProcessAssemblyLineData()
 
 void TestTextFileToVector(std::string a_fileNameRead)
 {
-    std::optional< std::vector <std::string> > lines;
+    std::optional< std::vector <std::string> > lines= TextFileToVector(a_fileNameRead);
     if (lines.has_value())
     {
         for (std::string line : lines.value())
         {
             std::cout << line << "\n";
         }
+    }
+    else
+    {
+        std::cout << "file not found";
     }
 }
 
@@ -83,7 +87,7 @@ int main(int argc, const char **argv)
 
 
 
-    //TestTextFileToVector("sample.asm");
+    TestTextFileToVector("sample.asm");
     //TestUpper();
     //commandDict.PrintDict();
     //TestStripLeft();
