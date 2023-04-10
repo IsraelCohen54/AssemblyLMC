@@ -102,7 +102,7 @@ Dict2 LabelDictFromVector(const std::vector<std::string>& a_File)
 			++counter;
 			continue;
 		}
-		resoult.Append(lebelText, counter);
+		resoult.Append(lebelText, std::to_string(counter));
 		++counter;
 	}
 	return resoult;

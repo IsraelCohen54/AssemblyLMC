@@ -16,10 +16,10 @@ void ShowLineDataToClient(const std::array<std::string, 3>& a_lmcData)
 void TestDict()
 {
     Dict2 a_dict;
-    a_dict.Append("one", 1);
-    a_dict.Append("two", 2);
-    a_dict.Append("tree", 3);
-    a_dict.Append("four", 4);
+    a_dict.Append("one", "1");
+    a_dict.Append("two", "2");
+    a_dict.Append("tree", "3");
+    a_dict.Append("four", "4");
     //a_dict.Append("two", 7);
 
     std::cout << a_dict.Size() << "\n";
@@ -77,13 +77,13 @@ void TestTextFileToVector(std::string a_fileNameRead)
 int main(int argc, const char **argv)
 {
     using namespace experis;
-    const Dict2 commandDict{std::vector<itemType>{{"HLT", 0}, {"ADD", 1}, {"SUB", 2}, {"STA", 3}, 
-        {"STO", 3}, {"LDA", 5}, {"BRA", 6}, {"BRZ", 7}, {"BRP", 8}, {"INP", 9}, {"OUT", 9}, {"OTC", 9}, 
-        {"DAT", -1111111}}};  //TODO DAT???
+    const Dict2 commandDict{std::vector<itemType>{{"HLT", "0"}, {"ADD", "1"}, {"SUB", "2"}, 
+        {"STA", "3"}, {"STO", "3"}, {"LDA", "5"}, {"BRA", "6"}, {"BRZ", "7"}, {"BRP", "8"}, 
+        {"INP", "9"}, {"OUT", "9"}, {"OTC", "9"},{"DAT", ""}} };
 
 
 
-    TestTextFileToVector("sample.asm");
+    //TestTextFileToVector("sample.asm");
     //TestUpper();
     //commandDict.PrintDict();
     //TestStripLeft();

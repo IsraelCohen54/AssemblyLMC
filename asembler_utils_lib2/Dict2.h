@@ -9,7 +9,7 @@ namespace experis
 {
 
 using keyType = std::string;
-using valType = size_t;
+using valType = std::string;
 using itemType = std::pair<keyType, valType>;
 
 class Dict2
