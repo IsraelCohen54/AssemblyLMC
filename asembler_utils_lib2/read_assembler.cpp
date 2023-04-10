@@ -28,17 +28,16 @@ std::string  StripLeft(std::string a_string)
 
 bool IsLebal(std::string a_lineOfCode)
 	{
-		
 		std::array<std::string, 13> legalCommands{ "HLT", "ADD", "SUB", "STA", "STO",
 			"LDA", "BRA", "BRZ", "BRP", "INP", "OUT", "OTC", "DAT" };
 		for (std::string command : legalCommands)
 		{
 		if (a_lineOfCode.starts_with(command)) 
-			{
-				return false;
-			}
+		{
+			return false;
+		}
 		//std::find(legalCommands.begin(), legalCommands.end(), command.substr(0, 2));
-	}
+		}
 		return true;
 }
 
