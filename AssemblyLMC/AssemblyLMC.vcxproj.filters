@@ -19,7 +19,4 @@
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\Library training\Using Library for reading file\sample.asm" />
-  </ItemGroup>
 </Project>
