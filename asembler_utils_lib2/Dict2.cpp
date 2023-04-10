@@ -38,8 +38,16 @@ Dict2::Dict2(const std::vector<itemType>& a_other)
 {
 
 }
+void Dict2::PrintDict() const
+{
+	for (itemType corrItem : this->m_items)
+	{
+		std::cout<<(corrItem.first)<<"->"<<corrItem.second<< "\n";
 
-valType Dict2::Val(keyType a_key)
+	}
+}
+
+valType Dict2::Val(keyType a_key) const
 {
 	for (itemType corrItem : this->m_items)
 	{
@@ -51,7 +59,7 @@ valType Dict2::Val(keyType a_key)
 	return -1;
 }
 
-size_t Dict2::Size()
+size_t Dict2::Size() const
 {
 	return this->m_size;
 }

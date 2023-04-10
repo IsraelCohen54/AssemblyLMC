@@ -12,7 +12,8 @@
 namespace experis
 {
 
-void StripLeft(std::string& a_string);
+std::string StripLeft(std::string a_string);
+std::string Upper(const std::string& a_string);
 bool IsLabel(std::string a_lineOfCode);
 
 std::array<std::string, 3> ProcessAssemblyLineData(const std::string& a_assemblyLine);

@@ -3,6 +3,7 @@
 #include <utility>      // std::pair, std::make_pair
 #include <string> 
 #include <assert.h>
+#include <iostream>
 
 namespace experis
 {
@@ -22,8 +23,9 @@ public:
 
 	void Append(itemType a_item);
 	void Append(keyType a_key, valType a_val);
-	valType Val(keyType a_key);
-	size_t Size();
+	void PrintDict() const;
+	valType Val(keyType a_key) const;
+	size_t Size() const;
 
 private:
 	size_t m_size;

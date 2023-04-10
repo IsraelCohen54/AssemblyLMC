@@ -63,9 +63,10 @@ void TestProcessAssemblyLineData()
 
 void TestTextFileToVector(std::string a_fileNameRead)
 {
-    if (TextFileToVector(a_fileNameRead).has_value())
+    std::optional< std::vector <std::string> > lines;
+    if (lines.has_value())
     {
-        for (std::string line : TextFileToVector(a_fileNameRead).value())
+        for (std::string line : lines.value())
         {
             std::cout << line << "\n";
         }
