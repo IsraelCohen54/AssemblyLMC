@@ -8,16 +8,16 @@ namespace experis
 {
 
 using keyType = std::string;
-using valType = int;
+using valType = size_t;
 using itemType = std::pair<keyType, valType>;
 
 class Dict2
 {
 public:
-
-	Dict2();
-	Dict2(const Dict2& a_other) = delete;
+	explicit Dict2();
+	Dict2(const Dict2& a_other);  // was needed for the return DICT2 func
 	Dict2& operator=(const Dict2& a_other)=delete;
+	Dict2(const std::vector<itemType>& a_other);  //for OP dict
 	~Dict2() = default;
 
 	void Append(itemType a_item);
@@ -28,7 +28,6 @@ public:
 private:
 	size_t m_size;
 	std::vector<itemType> m_items;
-
 };
 
 } //experis namespace
