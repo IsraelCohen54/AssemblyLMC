@@ -114,7 +114,8 @@ Dict2 LabelDictFromVector(const std::vector<std::string>& a_File)
 			++counter;
 			continue;
 		}
-		result.Append(lebelText, std::to_string(counter));
+		
+		result.Append(lebelText, ((counter < 9) ? "0" : "") + std::to_string(counter));
 		++counter;
 	}
 	return result;

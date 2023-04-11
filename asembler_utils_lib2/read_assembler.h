@@ -13,7 +13,7 @@ namespace experis
 {
 const Dict2 commandDict{ std::vector<itemType>{ {"HLT", "0"}, {"ADD", "1"}, {"SUB", "2"},
 {"STA", "3"}, {"STO", "3"}, {"LDA", "5"}, {"BRA", "6"}, {"BRZ", "7"}, {"BRP", "8"},
-{"INP", "9"}, {"OUT", "9"}, {"OTC", "9"},{"DAT", ""}} };
+{"INP", "901"}, {"OUT", "902"}, {"OTC", "922"},{"DAT", ""}} };
 
 std::string StripLeft(std::string a_string);
 std::string Upper(const std::string& a_string);
