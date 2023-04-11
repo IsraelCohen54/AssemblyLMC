@@ -106,13 +106,13 @@ int main(int argc, const char **argv)
             path = path.substr(0,path.size() - 4);
             path += ".lmc";
             Dict2 labelDict = LabelDictFromVector(fileDataInVec.value());    
-            WriteFileAsemblyCode(fileDataInVec.value(), labelDict, path);
+            WriteFileAsemblyCode(fileDataInVec.value(), labelDict, path, false);
         }
     }
     else if (argc == 3)
     {
-        /*std::string path = argv[1];
-        if (argv[2] != "/bin")
+        std::string path = argv[1];
+        if (std::string(argv[2]) != "/bin")
         {
             throw(FileWrongInputCommandsException(argv[2]));
         }
@@ -120,11 +120,10 @@ int main(int argc, const char **argv)
         if (fileDataInVec.has_value())
         {
             path = path.substr(0,path.size() - 4);
-            path += argv[2];
+            path += ".bin";
             Dict2 labelDict = LabelDictFromVector(fileDataInVec.value());    
-            WriteFileAsemblyCode(fileDataInVec.value(), labelDict, path);
-        }*/
-        //WriteStrVectorToBinaryFile
+            WriteFileAsemblyCode(fileDataInVec.value(), labelDict, path, true);
+        }
     }
     else if (argc == 4)
     {

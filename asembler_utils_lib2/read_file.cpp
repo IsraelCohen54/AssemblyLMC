@@ -25,32 +25,40 @@ int Encode(TwoBytesCHAR a_array)
 	return a_array[0] * 256 + a_array[1];
 }
 
-void WriteStrVectorToBinaryFile(std::vector<std::string> nums, std::string a_fileNameToWrite)
+void WriteStrVectorToBinaryFile(std::vector<std::string> a_nums, std::string a_fileNameToWrite)
 {
 	std::ofstream binaryFile{ a_fileNameToWrite, std::ios_base::binary };
-	for (std::string str : nums)
+	for (std::string str : a_nums)
 	{
+		if (str == "\n")
+		{
+			continue;
+		}
 		int num = std::stoi(str);
 		TwoBytesCHAR NumInBytes = Decode(num);
 		binaryFile.put(NumInBytes.at(0));
 		binaryFile.put(NumInBytes.at(1));
 	}
+	return;
 }
 
-void WriteFileAsemblyCode(std::vector<std::string> a_fileDataInVec, Dict2& a_labelDict, std::string& a_path, bool isBinaryOutput)
+void WriteFileAsemblyCode(std::vector<std::string> a_fileDataInVec, Dict2& a_labelDict, std::string& a_path, bool a_isBinaryOutput)
 {
-	std::ofstream txtFileWriter{ a_path }; //, std::ios_base::binary };
+	std::ofstream txtFileWriter{ a_path };
+	std::vector<std::string> assemblyNums{};
 	for (const std::string& line : a_fileDataInVec)
 	{
-		if (!isBinaryOutput)
+		if (!a_isBinaryOutput)
 		{
 			txtFileWriter << AsemblyLineToCode(line, a_labelDict) << "\n";
 		}
 		else
 		{
-
+			assemblyNums.push_back(AsemblyLineToCode(line, a_labelDict) + "\n");
 		}
 	}
+	WriteStrVectorToBinaryFile(assemblyNums, a_path);
+	return;
 }
 
 void PrintBinaryFile(std::string a_binaryFileNameToReadFron)

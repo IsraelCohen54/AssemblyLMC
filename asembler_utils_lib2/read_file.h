@@ -22,7 +22,7 @@ TwoBytesCHAR Decode(int a_num);
 int Encode(TwoBytesCHAR a_array);
 
 void WriteStrVectorToBinaryFile(std::vector<std::string> nums, std::string a_fileNameToWrite);
-void WriteFileAsemblyCode(std::vector<std::string> a_fileDataInVec, Dict2& a_labelDict, std::string& a_path);
+void WriteFileAsemblyCode(std::vector<std::string> a_fileDataInVec, Dict2& a_labelDict, std::string& a_path, bool a_isBinaryOutput);
 void PrintBinaryFile(std::string a_fileNameToWrite);
 
 } //experis namespace
