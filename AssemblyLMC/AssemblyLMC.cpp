@@ -5,6 +5,8 @@
 namespace experis
 {
 
+static constexpr bool FILE_BINARY_OUTPUT = true;
+
 void ShowLineDataToClient(const std::array<std::string, 3>& a_lmcData)
 {
     for (const std::string& str : a_lmcData)
@@ -106,33 +108,52 @@ int main(int argc, const char **argv)
             path = path.substr(0,path.size() - 4);
             path += ".lmc";
             Dict2 labelDict = LabelDictFromVector(fileDataInVec.value());    
-            WriteFileAsemblyCode(fileDataInVec.value(), labelDict, path, false);
+            WriteFileAsemblyCode(fileDataInVec.value(), labelDict, path, !FILE_BINARY_OUTPUT);
         }
     }
     else if (argc == 3)
     {
-        std::string path = argv[1];
         if (std::string(argv[2]) != "/bin")
         {
             throw(FileWrongInputCommandsException(argv[2]));
         }
+        std::string path = argv[1];
         std::optional<std::vector<std::string>> fileDataInVec{TextFileToVector(path)};
         if (fileDataInVec.has_value())
         {
             path = path.substr(0,path.size() - 4);
             path += ".bin";
             Dict2 labelDict = LabelDictFromVector(fileDataInVec.value());    
-            WriteFileAsemblyCode(fileDataInVec.value(), labelDict, path, true);
+            WriteFileAsemblyCode(fileDataInVec.value(), labelDict, path, FILE_BINARY_OUTPUT);
+            //PrintBinaryFile(path);
         }
     }
     else if (argc == 4)
     {
-        //TODO 
+        std::string path = argv[1];
+        std::optional<std::vector<std::string>> fileDataInVec{TextFileToVector(path)};
+        if (fileDataInVec.has_value())
+        {
+            path = std::string(argv[2]);
+            Dict2 labelDict = LabelDictFromVector(fileDataInVec.value());    
+            WriteFileAsemblyCode(fileDataInVec.value(), labelDict, path, !FILE_BINARY_OUTPUT);
+        }
     }
     else if (argc == 5)
     {
-        //TODO 
-        //WriteStrVectorToBinaryFile
+        if (std::string(argv[2]) != "/bin")
+        {
+            throw(FileWrongInputCommandsException(argv[2]));
+        }
+        std::string path = argv[1];
+        std::optional<std::vector<std::string>> fileDataInVec{TextFileToVector(path)};
+        if (fileDataInVec.has_value())
+        {
+            path = std::string(argv[3]);
+            Dict2 labelDict = LabelDictFromVector(fileDataInVec.value());    
+            WriteFileAsemblyCode(fileDataInVec.value(), labelDict, path, FILE_BINARY_OUTPUT);
+            //PrintBinaryFile(path);
+        }
     }
 
     //std::vector<std::string> test{ TestTextFileToVector("sample.asm") };
