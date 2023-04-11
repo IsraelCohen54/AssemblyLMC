@@ -111,7 +111,7 @@ int main(int argc, const char **argv)
     }
     else if (argc == 3)
     {
-        std::string path = argv[1];
+        /*std::string path = argv[1];
         if (argv[2] != "/bin")
         {
             throw(FileWrongInputCommandsException(argv[2]));
@@ -120,10 +120,10 @@ int main(int argc, const char **argv)
         if (fileDataInVec.has_value())
         {
             path = path.substr(0,path.size() - 4);
-            path += ".lmc";
+            path += argv[2];
             Dict2 labelDict = LabelDictFromVector(fileDataInVec.value());    
             WriteFileAsemblyCode(fileDataInVec.value(), labelDict, path);
-        }
+        }*/
         //WriteStrVectorToBinaryFile
     }
     else if (argc == 4)
