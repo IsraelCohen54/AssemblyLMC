@@ -1,5 +1,6 @@
 #include <iostream>
 #include "read_assembler.h"
+#include "read_file.h"
 
 namespace experis
 {
@@ -79,23 +80,66 @@ std::vector<std::string> TestTextFileToVector(std::string a_fileNameRead)
     }
 }
 
+struct FileWrongInputCommandsException : std::exception
+{
+    experis::FileWrongInputCommandsException(const std::string& a_cmd);
+    std::string m_cmd;
+};
+
+FileWrongInputCommandsException::FileWrongInputCommandsException(const std::string& a_cmd)
+: m_cmd{a_cmd}
+{
+}
+
 } // experis namespace
+
 int main(int argc, const char **argv)
 {
     using namespace experis;
-    if (argc == 1)
+
+    if (argc == 2)
+    {
+        std::string path = argv[1];
+        std::optional<std::vector<std::string>> fileDataInVec{TextFileToVector(path)};
+        if (fileDataInVec.has_value())
+        {
+            path = path.substr(0,path.size() - 4);
+            path += ".lmc";
+            Dict2 labelDict = LabelDictFromVector(fileDataInVec.value());    
+            WriteFileAsemblyCode(fileDataInVec.value(), labelDict, path);
+        }
+    }
+    else if (argc == 3)
+    {
+        std::string path = argv[1];
+        if (argv[2] != "/bin")
+        {
+            throw(FileWrongInputCommandsException(argv[2]));
+        }
+        std::optional<std::vector<std::string>> fileDataInVec{TextFileToVector(path)};
+        if (fileDataInVec.has_value())
+        {
+            path = path.substr(0,path.size() - 4);
+            path += ".lmc";
+            Dict2 labelDict = LabelDictFromVector(fileDataInVec.value());    
+            WriteFileAsemblyCode(fileDataInVec.value(), labelDict, path);
+        }
+        //WriteStrVectorToBinaryFile
+    }
+    else if (argc == 4)
     {
         //TODO 
     }
+    else if (argc == 5)
+    {
+        //TODO 
+        //WriteStrVectorToBinaryFile
+    }
 
-
-
-
-    //
-    std::vector<std::string> test{ TestTextFileToVector("sample.asm") };
-    Dict2 labalDict = LabelDictFromVector(test);
+    //std::vector<std::string> test{ TestTextFileToVector("sample.asm") };
+    //Dict2 labalDict = LabelDictFromVector(test);
     //labalDict.PrintDict();
-    PrintAsemblyCode(test, labalDict);
+    //  PrintAsemblyCode(test, labalDict);
     //TestUpper();
     //commandDict.PrintDict();
     //TestStripLeft();

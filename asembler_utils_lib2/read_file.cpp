@@ -1,7 +1,9 @@
 #include "pch.h"
 #include "read_file.h"
+
 namespace experis
 {
+
 void PrintFromVectorOfInts(std::vector<int> a_nums)
 {
 	for (int num : a_nums)
@@ -9,8 +11,6 @@ void PrintFromVectorOfInts(std::vector<int> a_nums)
 		std::cout << num << '\n';
 	}
 }
-
-
 
 TwoBytesCHAR Decode(int a_num)
 {
@@ -37,6 +37,22 @@ void WriteStrVectorToBinaryFile(std::vector<std::string> nums, std::string a_fil
 	}
 }
 
+void WriteFileAsemblyCode(std::vector<std::string> a_fileDataInVec, Dict2& a_labelDict, std::string& a_path, bool isBinaryOutput)
+{
+	std::ofstream txtFileWriter{ a_path }; //, std::ios_base::binary };
+	for (const std::string& line : a_fileDataInVec)
+	{
+		if (!isBinaryOutput)
+		{
+			txtFileWriter << AsemblyLineToCode(line, a_labelDict) << "\n";
+		}
+		else
+		{
+
+		}
+	}
+}
+
 void PrintBinaryFile(std::string a_binaryFileNameToReadFron)
 {
 	std::ifstream binaryFile{ a_binaryFileNameToReadFron, std::ios_base::binary };
@@ -54,4 +70,5 @@ void PrintBinaryFile(std::string a_binaryFileNameToReadFron)
 		std::cout << num << "\n";
 	}
 }
-}//experis
+
+} //experis namespace

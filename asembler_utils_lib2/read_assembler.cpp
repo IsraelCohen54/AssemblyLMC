@@ -78,12 +78,11 @@ std::array<std::string, 3> ProcessAssemblyLineData(const std::string& a_assembly
 	return lineAssemblyData;
 }
 
-std::optional< std::vector <std::string> > TextFileToVector(std::string a_fileNameRead)
+std::optional<std::vector<std::string>> TextFileToVector(std::string a_fileNameRead)
 {
-
 	std::ifstream fileToReadFrom{ a_fileNameRead };
 	std::vector<std::string> result;
-	if (!fileToReadFrom.good())
+	if (!fileToReadFrom.good())  //TODO [ar] s of SOLID! todo add func isPath..
 	{
 		std::cout << "Not good - file not found\n";
 		return{};
@@ -105,7 +104,7 @@ std::optional< std::vector <std::string> > TextFileToVector(std::string a_fileNa
 
 Dict2 LabelDictFromVector(const std::vector<std::string>& a_File)
 {
-	Dict2 resoult{};
+	Dict2 result{};
 	size_t counter = 0;
 	for (const std::string& line : a_File)
 	{
@@ -115,10 +114,10 @@ Dict2 LabelDictFromVector(const std::vector<std::string>& a_File)
 			++counter;
 			continue;
 		}
-		resoult.Append(lebelText, std::to_string(counter));
+		result.Append(lebelText, std::to_string(counter));
 		++counter;
 	}
-	return resoult;
+	return result;
 }
 
 std::string AsemblyLineToCode(std::string a_asemblyLine, Dict2 a_labelDict)
@@ -134,9 +133,9 @@ std::string AsemblyLineToCode(std::string a_asemblyLine, Dict2 a_labelDict)
 	return resault;
 }
 
-void PrintAsemblyCode(const std::vector<std::string>& a_File, Dict2 a_labelDict)
+void PrintAsemblyCode(const std::vector<std::string>& a_fileData, Dict2 a_labelDict)
 {
-	for (std::string line : a_File)
+	for (std::string line : a_fileData)
 	{
 		std::cout << AsemblyLineToCode(line, a_labelDict)<<"\n";
 	}
