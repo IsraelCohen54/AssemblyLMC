@@ -43,6 +43,7 @@ bool IsNumeric(std::string a_string)
 	}
 	return true;
 }
+
 bool IsLabel(std::string a_lineOfCode)
 {
 	

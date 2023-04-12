@@ -51,6 +51,7 @@ void TestUpper()
         std::cout << a_string << "->" << Upper(a_string) << "\n";
     }
 }
+
 void TestProcessAssemblyLineData()
 {
     std::array<std::string, 3> res1 = experis::ProcessAssemblyLineData("one dat 1");
@@ -97,7 +98,7 @@ void CheckBinFlag(const std::string& a_type)
 {
     if (a_type != "/bin")
     {
-            throw(FileWrongInputCommandsException(a_type));
+        throw(FileWrongInputCommandsException(a_type));
     }
 }
 
@@ -148,7 +149,6 @@ int main(int argc, const char **argv)
         WriteFileAsemblyCode(fileDataInVec.value(), labelDict, path, isBoolOutput);
         //PrintBinaryFile(path); // only if binary output => (argc == 3 || 5)
     }
-    
     else
     {   //TODO add throw expeption...
         std::cout << "file is vacant\n";
@@ -156,11 +156,11 @@ int main(int argc, const char **argv)
     return 0;
 }
 
-    //std::vector<std::string> test{ TestTextFileToVector("sample.asm") };
-    //Dict2 labalDict = LabelDictFromVector(test);
-    //labalDict.PrintDict();
-    //  PrintAsemblyCode(test, labalDict);
-    //TestUpper();
-    //commandDict.PrintDict();
-    //TestStripLeft();
-    //experis::ShowLineDataToClient(res8);
+//std::vector<std::string> test{ TestTextFileToVector("sample.asm") };
+//Dict2 labalDict = LabelDictFromVector(test);
+//labalDict.PrintDict();
+//  PrintAsemblyCode(test, labalDict);
+//TestUpper();
+//commandDict.PrintDict();
+//TestStripLeft();
+//experis::ShowLineDataToClient(res8);
