@@ -101,12 +101,11 @@ void CheckBinFlag(const std::string& a_type)
     }
 }
 
-std::string ChangeExtension(std::string a_extention)
+std::string ChangeExtension(std::string a_extention, std::string a_path)
 {
-    std::string path{};
-    path = path.substr(0,path.size() - 3);
-    path += a_extention;
-    return path;
+    a_path = a_path.substr(0,a_path.size() - 3);
+    a_path += a_extention;
+    return a_path;
 }
 
 } // experis namespace
@@ -122,12 +121,12 @@ int main(int argc, const char **argv)
         if (argc == 2)
         {
             bool isBoolOutput = FILE_TXT_OUTPUT;
-            path = ChangeExtension("lmc");
+            path = ChangeExtension("lmc", path);
         }
         else if (argc == 3)
         {
             CheckBinFlag(std::string(argv[2]));
-            path = ChangeExtension("bin");
+            path = ChangeExtension("bin", path);
             isBoolOutput = FILE_BINARY_OUTPUT;
         }
         else if (argc == 4)
