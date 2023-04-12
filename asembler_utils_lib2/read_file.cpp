@@ -46,19 +46,29 @@ void WriteFileAsemblyCode(std::vector<std::string> a_fileDataInVec, Dict2& a_lab
 {
 	std::ofstream txtFileWriter{ a_path };
 	std::vector<std::string> assemblyNums{};
-	for (const std::string& line : a_fileDataInVec)
+	if (a_isBinaryOutput)
 	{
-		if (!a_isBinaryOutput)
+		for (const std::string& line : a_fileDataInVec)
 		{
-			txtFileWriter << AsemblyLineToCode(line, a_labelDict) << "\n";
-		}
-		else
-		{
+			if (line == "")
+			{
+				continue;
+			}
 			assemblyNums.push_back(AsemblyLineToCode(line, a_labelDict) + "\n");
 		}
+		WriteStrVectorToBinaryFile(assemblyNums, a_path);
 	}
-	WriteStrVectorToBinaryFile(assemblyNums, a_path);
-	return;
+	else
+	{
+		for (const std::string& line : a_fileDataInVec)
+		{
+			if (line == "")
+			{
+				continue;
+			}
+			txtFileWriter << AsemblyLineToCode(line, a_labelDict) << "\n";
+		}
+	}
 }
 
 void PrintBinaryFile(std::string a_binaryFileNameToReadFron)
@@ -66,14 +76,14 @@ void PrintBinaryFile(std::string a_binaryFileNameToReadFron)
 	std::ifstream binaryFile{ a_binaryFileNameToReadFron, std::ios_base::binary };
 	int MSB = binaryFile.get();
 	int LSB = binaryFile.get();
-	TwoBytesCHAR numInBytes{ MSB,LSB };
+	TwoBytesCHAR numInBytes{ unsigned char(MSB), unsigned char(LSB) };
 	int num = Encode(numInBytes);
 	std::cout << num << "\n";
 	while (!binaryFile.eof())
 	{
 		MSB = binaryFile.get();
 		LSB = binaryFile.get();
-		TwoBytesCHAR numInBytes{ MSB,LSB };
+		TwoBytesCHAR numInBytes{ unsigned char(MSB), unsigned char(LSB) };
 		num = Encode(numInBytes);
 		std::cout << num << "\n";
 	}

@@ -60,7 +60,7 @@ bool IsLabel(std::string a_lineOfCode)
 	return true;
 }
 
-std::array<std::string, 3> ProcessAssemblyLineData(const std::string& a_assemblyLine)  //TODO [is] CONST REFERENCE + TESTINGS
+std::array<std::string, 3> ProcessAssemblyLineData(const std::string& a_assemblyLine)
 {
 	std::array<std::string, 3> lineAssemblyData{ std::string{""}, std::string{""}, std::string{""} };
 	for (int i = 0, stringCounter = int(!IsLabel(a_assemblyLine)) ; i < a_assemblyLine.size() ; ++i)  // !IsLebal as if label exist = start from zero to hold the label
@@ -82,9 +82,9 @@ std::optional<std::vector<std::string>> TextFileToVector(std::string a_fileNameR
 {
 	std::ifstream fileToReadFrom{ a_fileNameRead };
 	std::vector<std::string> result;
-	if (!fileToReadFrom.good())  //TODO [ar] s of SOLID! todo add func isPath..
+	if (!fileToReadFrom.good())
 	{
-		std::cout << "Not good - file not found\n";
+		std::cout << "Not good - file not found\n"; //TODO add throw expeption...
 		return{};
 	}
 	std::string untrustedFileLine;

@@ -6,6 +6,7 @@ namespace experis
 {
 
 static constexpr bool FILE_BINARY_OUTPUT = true;
+static constexpr bool FILE_TXT_OUTPUT = false;
 
 void ShowLineDataToClient(const std::array<std::string, 3>& a_lmcData)
 {
@@ -52,7 +53,6 @@ void TestUpper()
 }
 void TestProcessAssemblyLineData()
 {
-
     std::array<std::string, 3> res1 = experis::ProcessAssemblyLineData("one dat 1");
     std::array<std::string, 3> res2 = experis::ProcessAssemblyLineData("two dat     2");
     std::array<std::string, 3> res3 = experis::ProcessAssemblyLineData(" three     dat one ");
@@ -93,68 +93,69 @@ FileWrongInputCommandsException::FileWrongInputCommandsException(const std::stri
 {
 }
 
+void CheckBinFlag(const std::string& a_type)
+{
+    if (a_type != "/bin")
+    {
+            throw(FileWrongInputCommandsException(a_type));
+    }
+}
+
+std::string ChangeExtension(std::string a_extention)
+{
+    std::string path{};
+    path = path.substr(0,path.size() - 3);
+    path += a_extention;
+    return path;
+}
+
 } // experis namespace
 
 int main(int argc, const char **argv)
 {
     using namespace experis;
-
-    if (argc == 2)
+    bool isBoolOutput{};
+    std::string path = argv[1]; // TODO check if argv exist & valid
+    std::optional<std::vector<std::string>> fileDataInVec{TextFileToVector(path)};
+    if (fileDataInVec.has_value())
     {
-        std::string path = argv[1];
-        std::optional<std::vector<std::string>> fileDataInVec{TextFileToVector(path)};
-        if (fileDataInVec.has_value())
+        if (argc == 2)
         {
-            path = path.substr(0,path.size() - 4);
-            path += ".lmc";
-            Dict2 labelDict = LabelDictFromVector(fileDataInVec.value());    
-            WriteFileAsemblyCode(fileDataInVec.value(), labelDict, path, !FILE_BINARY_OUTPUT);
+            bool isBoolOutput = FILE_TXT_OUTPUT;
+            path = ChangeExtension("lmc");
         }
-    }
-    else if (argc == 3)
-    {
-        if (std::string(argv[2]) != "/bin")
+        else if (argc == 3)
         {
-            throw(FileWrongInputCommandsException(argv[2]));
+            CheckBinFlag(std::string(argv[2]));
+            path = ChangeExtension("bin");
+            isBoolOutput = FILE_BINARY_OUTPUT;
         }
-        std::string path = argv[1];
-        std::optional<std::vector<std::string>> fileDataInVec{TextFileToVector(path)};
-        if (fileDataInVec.has_value())
-        {
-            path = path.substr(0,path.size() - 4);
-            path += ".bin";
-            Dict2 labelDict = LabelDictFromVector(fileDataInVec.value());    
-            WriteFileAsemblyCode(fileDataInVec.value(), labelDict, path, FILE_BINARY_OUTPUT);
-            //PrintBinaryFile(path);
-        }
-    }
-    else if (argc == 4)
-    {
-        std::string path = argv[1];
-        std::optional<std::vector<std::string>> fileDataInVec{TextFileToVector(path)};
-        if (fileDataInVec.has_value())
+        else if (argc == 4)
         {
             path = std::string(argv[2]);
-            Dict2 labelDict = LabelDictFromVector(fileDataInVec.value());    
-            WriteFileAsemblyCode(fileDataInVec.value(), labelDict, path, !FILE_BINARY_OUTPUT);
+            bool isBoolOutput = FILE_TXT_OUTPUT;
         }
-    }
-    else if (argc == 5)
-    {
-        if (std::string(argv[2]) != "/bin")
+        else if (argc == 5)
         {
-            throw(FileWrongInputCommandsException(argv[2]));
-        }
-        std::string path = argv[1];
-        std::optional<std::vector<std::string>> fileDataInVec{TextFileToVector(path)};
-        if (fileDataInVec.has_value())
-        {
+            CheckBinFlag(std::string(argv[2]));
             path = std::string(argv[3]);
-            Dict2 labelDict = LabelDictFromVector(fileDataInVec.value());    
-            WriteFileAsemblyCode(fileDataInVec.value(), labelDict, path, FILE_BINARY_OUTPUT);
-            //PrintBinaryFile(path);
+            isBoolOutput = FILE_BINARY_OUTPUT;
         }
+        else 
+        {   //TODO add throw expeption...
+            std::cout << "wrong input numbers of arguments";
+        }
+        Dict2 labelDict = LabelDictFromVector(fileDataInVec.value());
+        WriteFileAsemblyCode(fileDataInVec.value(), labelDict, path, isBoolOutput);
+        //PrintBinaryFile(path); // only if binary output => (argc == 3 || 5)
     }
+    
+    else
+    {   //TODO add throw expeption...
+        std::cout << "file is vacant\n";
+    }
+    return 0;
+}
 
     //std::vector<std::string> test{ TestTextFileToVector("sample.asm") };
     //Dict2 labalDict = LabelDictFromVector(test);
@@ -164,4 +165,3 @@ int main(int argc, const char **argv)
     //commandDict.PrintDict();
     //TestStripLeft();
     //experis::ShowLineDataToClient(res8);
-}
