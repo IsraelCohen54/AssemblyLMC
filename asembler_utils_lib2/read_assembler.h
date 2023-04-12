@@ -11,6 +11,7 @@
 
 namespace experis
 {
+
 const Dict2 commandDict{ std::vector<ItemType>{ {"HLT", "0"}, {"ADD", "1"}, {"SUB", "2"},
 {"STA", "3"}, {"STO", "3"}, {"LDA", "5"}, {"BRA", "6"}, {"BRZ", "7"}, {"BRP", "8"},
 {"INP", "901"}, {"OUT", "902"}, {"OTC", "922"},{"DAT", ""}} };
@@ -25,6 +26,5 @@ std::optional< std::vector <std::string> > TextFileToVector(std::string a_fileNa
 Dict2 LabelDictFromVector(const std::vector<std::string>& a_File);
 std::string AsemblyLineToCode(std::string a_asemblyLine, Dict2 a_labelDict);
 void PrintAsemblyCode(const std::vector<std::string>& a_File, Dict2 a_labelDict);
-
 
 } //experis namespace
