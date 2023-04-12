@@ -8,9 +8,9 @@
 namespace experis
 {
 
-using keyType = std::string;
-using valType = std::string;
-using itemType = std::pair<keyType, valType>;
+using KeyType = std::string;
+using ValType = std::string;
+using ItemType = std::pair<KeyType, ValType>;
 
 class Dict2
 {
@@ -18,18 +18,18 @@ public:
 	explicit Dict2();
 	Dict2(const Dict2& a_other);  // was needed for the return DICT2 func
 	Dict2& operator=(const Dict2& a_other)=delete;
-	Dict2(const std::vector<itemType>& a_other);  //for OP dict
+	Dict2(const std::vector<ItemType>& a_other);  //for OP dict
 	~Dict2() = default;
 
-	void Append(itemType a_item);
-	void Append(keyType a_key, valType a_val);
+	void Append(ItemType a_item);
+	void Append(KeyType a_key, ValType a_val);
 	void PrintDict() const;
-	valType Val(keyType a_key) const;
+	ValType Val(KeyType a_key) const;
 	size_t Size() const;
 
 private:
 	size_t m_size;
-	std::vector<itemType> m_items;
+	std::vector<ItemType> m_items;
 };
 
 } //experis namespace

@@ -10,9 +10,9 @@ Dict2::Dict2()
 {
 }
 
-void Dict2::Append(itemType a_item)
+void Dict2::Append(ItemType a_item)
 {
-	keyType a_key = a_item.first;
+	KeyType a_key = a_item.first;
 	assert(this->Val(a_key) == "-1");
 	this->m_items.push_back(a_item);
 	++m_size;
@@ -24,15 +24,15 @@ Dict2::Dict2(const Dict2& a_other)
 {
 }
 
-void Dict2::Append(keyType a_key, valType a_val)
+void Dict2::Append(KeyType a_key, ValType a_val)
 {
 	assert(this->Val(a_key) == "-1");
-	itemType a_item = std::make_pair(a_key, a_val);
+	ItemType a_item = std::make_pair(a_key, a_val);
 	this->m_items.push_back(a_item);
 	++m_size;
 }
 
-Dict2::Dict2(const std::vector<itemType>& a_other)
+Dict2::Dict2(const std::vector<ItemType>& a_other)
 :m_items{a_other}
 ,m_size{a_other.size()}
 {
@@ -40,16 +40,16 @@ Dict2::Dict2(const std::vector<itemType>& a_other)
 }
 void Dict2::PrintDict() const
 {
-	for (itemType corrItem : this->m_items)
+	for (ItemType corrItem : this->m_items)
 	{
 		std::cout<<(corrItem.first)<<"->"<<corrItem.second<< "\n";
 
 	}
 }
 
-valType Dict2::Val(keyType a_key) const
+ValType Dict2::Val(KeyType a_key) const
 {
-	for (itemType corrItem : this->m_items)
+	for (ItemType corrItem : this->m_items)
 	{
 		if (corrItem.first == a_key)
 		{
