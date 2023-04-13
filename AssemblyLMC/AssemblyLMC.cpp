@@ -143,7 +143,7 @@ int main(int argc, const char **argv)
         }
         else 
         {   //TODO add throw expeption...
-            std::cout << "wrong input numbers of arguments";
+            std::cout << "wrong numbers of arguments input";
         }
         Dict2 labelDict = LabelDictFromVector(fileDataInVec.value());
         WriteFileAsemblyCode(fileDataInVec.value(), labelDict, path, isBoolOutput);
