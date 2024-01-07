@@ -1,1 +1,1 @@
-Programmed LMC - little man conputer, for assembly proccessing.
+Programmed LMC - little man computer, for assembly commands file proccessing.
